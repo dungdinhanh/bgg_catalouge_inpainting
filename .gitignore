@@ -3,3 +3,4 @@ m18_30k_ckpt/
 **/checkpoint*
 *.ckpt
 *.zip
+diffusers/

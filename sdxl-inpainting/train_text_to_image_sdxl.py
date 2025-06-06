@@ -57,7 +57,7 @@ from diffusers.utils import check_min_version, is_wandb_available
 from diffusers.utils.hub_utils import load_or_create_model_card, populate_model_card
 from diffusers.utils.import_utils import is_torch_npu_available, is_xformers_available
 from diffusers.utils.torch_utils import is_compiled_module
-import boto3
+# import boto3
 from diffusers.utils import load_image
 
 
@@ -299,6 +299,16 @@ def parse_args(input_args=None):
         default=None,
         help=(
             "A folder containing the training data. Folder contents must follow the structure described in"
+            " https://huggingface.co/docs/datasets/image_dataset#imagefolder. In particular, a `metadata.jsonl` file"
+            " must exist to provide the captions for the images. Ignored if `dataset_name` is specified."
+        ),
+    )
+    parser.add_argument(
+        "--mask_data_dir",
+        type=str,
+        default=None,
+        help=(
+            "A folder containing the masking data. Folder contents must follow the structure described in"
             " https://huggingface.co/docs/datasets/image_dataset#imagefolder. In particular, a `metadata.jsonl` file"
             " must exist to provide the captions for the images. Ignored if `dataset_name` is specified."
         ),
@@ -1153,7 +1163,7 @@ def main(args):
         ]
         # Process conditioning images as before
         conditioning_images = [
-            (image.convert("RGB") if not isinstance(image, str) else Image.open(os.path.join(args.train_data_dir, image)).convert("RGB"))
+            (image.convert("RGB") if not isinstance(image, str) else Image.open(os.path.join(args.mask_data_dir, image)).convert("RGB"))
             for image in examples[args.conditioning_image_column]
         ]
         # Reset the flip state before processing each pair
@@ -1538,7 +1548,8 @@ def main(args):
                     pixel_values = batch["pixel_values"].to(dtype=weight_dtype)
                 else:
                     pixel_values = batch["pixel_values"]
-
+                print(pixel_values.shape)
+                exit(0)
                 model_input = vae.encode(pixel_values).latent_dist.sample()
                 model_input = model_input * vae.config.scaling_factor
                 if args.pretrained_vae_model_name_or_path is None:
