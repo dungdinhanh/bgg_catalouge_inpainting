@@ -5,3 +5,4 @@ m18_30k_ckpt/
 *.zip
 diffusers/
 **/__pycache__/
+.vscode/

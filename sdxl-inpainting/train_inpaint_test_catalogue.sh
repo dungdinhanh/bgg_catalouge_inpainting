@@ -33,7 +33,7 @@ accelerate launch \
     --output_dir=$OUTPUT_DIR \
     --cache_dir=$CACHE_DIR \
     --resolution=512 --random_flip \
-    --train_batch_size=1 \
+    --train_batch_size=32 \
     --gradient_accumulation_steps=1 \
     --gradient_checkpointing \
     --max_train_steps=80000 \

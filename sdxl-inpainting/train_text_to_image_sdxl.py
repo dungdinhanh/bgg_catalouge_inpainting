@@ -1224,11 +1224,13 @@ def main(args):
         masked_images = []
         masks = []
         for temp_mask, temp_image in zip(processed_conditioning_images, images):
-            mask2 = temp_mask.clone()
-            mask = temp_mask.clone()
-            mask[mask2 >= 0.7] = 0
-            mask[mask2 < 0.7] = 1
-            masked_image = (1-mask)*temp_image
+            # mask2 = temp_mask.clone()
+   
+            # mask = temp_mask.clone()
+            # mask[mask2 >= 0.7] = 1
+            # mask[mask2 < 0.7] = 0
+            mask = (temp_mask >= 0.7).float()
+            masked_image = (1 - mask)*temp_image
             # Apply normalization after masking
             masked_images.append(masked_image)
             masks.append(mask)
@@ -1548,8 +1550,8 @@ def main(args):
                     pixel_values = batch["pixel_values"].to(dtype=weight_dtype)
                 else:
                     pixel_values = batch["pixel_values"]
-                print(pixel_values.shape)
-                exit(0)
+                # print(pixel_values.shape)
+                # exit(0)
                 model_input = vae.encode(pixel_values).latent_dist.sample()
                 model_input = model_input * vae.config.scaling_factor
                 if args.pretrained_vae_model_name_or_path is None:
