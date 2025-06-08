@@ -4,7 +4,7 @@ import os
 
 def convert_txt_to_jsonl(txt_path):
     base, _ = os.path.splitext(txt_path)
-    jsonl_path = base + ".json"
+    jsonl_path = base + ".jsonl"
 
     with open(txt_path, 'r') as f:
         image_paths = [line.strip() for line in f if line.strip()]
