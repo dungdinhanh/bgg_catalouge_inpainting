@@ -6,10 +6,10 @@ export CONTROL_TYPE='mask' #conditioning_image'
 export CAPTION_COLUMN='text'
 export TORCH_DISTRIBUTED_DEBUG=INFO
 # The json file dir of your training data
-export ROOT_DIR='/home/ubuntu/hl_50m_listings/'
+export ROOT_DIR='/home/ubuntu/inpaint_full/hl_50m_listings/'
 # The image folder of your training data
 export TRAIN_DIR="/home/ubuntu/inpaint_full/"
-export MASK_DIR="/opt/dlami/nvme/inpainting/mask_v2_50s_50o_1000/"
+export MASK_DIR="/home/ubuntu/inpainting_mask/mask_v2_50s_50o_1000/"
 # Define the folder to save downloaded model weights
 export CACHE_DIR="/home/ubuntu/.cache/"
 # Define the folder to save your models

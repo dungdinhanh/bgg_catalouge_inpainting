@@ -169,8 +169,8 @@ def run(rank, world_size):
     dataset = MaskGenerateDataset(
         "/home/ubuntu/inpaint_full/",
         "/home/ubuntu/inpaint_seg/",
-        "/opt/dlami/nvme/inpainting/mask_v2_50s_50o_1000/",
-        "/home/ubuntu/hl_50m_listings/train_cleaned_1000.txt",
+        "/home/ubuntu/inpainting_mask/mask_v2_50s_50o_1000/",
+        "/home/ubuntu/inpaint_full/hl_50m_listings/train_cleaned_1000.txt",
         transform=transform
     )
 

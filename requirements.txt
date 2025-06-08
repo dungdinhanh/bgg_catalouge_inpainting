@@ -6,7 +6,7 @@ webdataset
 matplotlib
 numpy==1.23.1
 scikit-learn
-torch==2.3.1+cu118
-torchvision==0.18.1+cu118
-torchaudio==2.3.1+cu118
---extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.6.0 
+torchvision==0.21.0 
+torchaudio==2.6.0 
+--index-url https://download.pytorch.org/whl/cu126
